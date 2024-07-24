@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOT MINES 2024🇲🇿</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .board-container {
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 10px;
+            margin-bottom: 20px;
+        }
+        .slot {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #616161;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: white;
+        }
+        .info {
+            margin-top: 15px;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px #000000;
+        }
+        .info span {
+            display: block;
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #ffeb3b;
+            text-shadow: 1px 1px 2px #000000;
+        }
+        .button {
+            padding: 8px 16px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0277bd;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        .button:hover {
+            background-color: #01579b;
+        }
+        .button-3d {
+            background-color: #0277bd;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+        .button-3d:hover {
+            background-color: #01579b;
+        }
+        .button-red {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+        .button-red:hover {
+            background-color: #b71c1c;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="board-container">
+        <h1>BOT MINES 2024🇲🇿</h1>
+        <div class="board" id="board">
+            <!-- Slots will be generated here -->
+        </div>
+        <div class="info">
+            APOSTA RECOMENDADA
+            <span id="betAmount">QUALQUER VALOR A PARTIR DE 50MT</span>
+        </div>
+        <div class="button-container">
+            <button class="button-3d" id="generateButton" onclick="generateBoard()">Gerar Sinal</button>
+            <a href="https://tracking.olabet.co.mz/C.ashx?btag=a_1659b_7c_&affid=1616&siteid=1659&adid=7&c=" class="button-red" target="_blank">
+                CADASTRAR PARA COMEÇAR A JOGAR
+            </a>
+            <p style="color: #fff; margin-top: 10px;">
+                Se o link não abrir automaticamente no seu navegador, clique com o botão direito e escolha "Abrir em uma nova aba" ou "Abrir no navegador padrão".
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function generateBoard() {
+            const button = document.getElementById('generateButton');
+            button.disabled = true;
+            button.textContent = 'Processando...';
+
+            setTimeout(() => {
+                const board = document.getElementById('board');
+                board.innerHTML = ''; // Clear the board
+
+                // Create a list with 20 ⬛ and 5 💎
+                let slots = Array(20).fill('⬛').concat(Array(5).fill('💎'));
+                // Shuffle the list
+                slots = slots.sort(() => Math.random() - 0.5);
+
+                // Generate the board
+                slots.forEach(slot => {
+                    const slotDiv = document.createElement('div');
+                    slotDiv.className = 'slot';
+                    slotDiv.textContent = slot;
+                    board.appendChild(slotDiv);
+                });
+
+                // Generate a random bet amount starting from 50MT
+                const betAmount = Math.floor(Math.random() * 951) + 50;
+                document.getElementById('betAmount').textContent = `${betAmount}MT`;
+
+                button.disabled = false;
+                button.textContent = 'Gerar Sinal';
+            }, 5000); // 5 seconds delay
+        }
+
+        // Generate the initial board
+        generateBoard();
+    </script>
+</body>
+</html>
